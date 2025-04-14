@@ -1,6 +1,257 @@
-<!--
+Bỏ qua nội dung chính
+Tìm kiếm GitHub Docs
+https://docs.github.com/en/site-policy/privacy-policies/github-subprocessorsBỏ qua nội dung chính Tài liệu GitHub Chính sách trang web /Chính sách bảo mật /Tuyên bố chung về quyền riêng tư của GitHub Tuyên bố chung về quyền riêng tư của GitHub Trong bài viết này Tuyên bố về quyền riêng tư của GitHub Chúng tôi thu thập những thông tin cá nhân nào Mục đích xử lý: cách chúng tôi sử dụng Dữ liệu cá nhân của bạn Chia sẻ dữ liệu cá nhân Kho lưu trữ riêng tư: truy cập GitHub Cơ sở pháp lý để xử lý Dữ liệu cá nhân 
+Tìm kiếm GitHub /Tìm kiếm mã GitHub /Cú pháp tìm kiếm mã
+Tổng quan về cú pháp tìm kiếm mã GitHub
+Bạn có thể tạo truy vấn tìm kiếm cho kết quả bạn muốn bằng cách sử dụng các mã định danh chuyên dụng, biểu thức chính quy và phép toán Boolean.
+
+Trong bài viết này
+Về cấu trúc của truy vấn tìm kiếm mã
+Truy vấn để tìm kết quả khớp chính xác
+Tìm kiếm dấu ngoặc kép và dấu gạch chéo ngược
+Sử dụng các phép toán Boolean
+Sử dụng các từ hạn định
+Sử dụng biểu thức chính quy
+Phân tách các thuật ngữ tìm kiếm
+Phân biệt chữ hoa chữ thường
+Về cấu trúc của truy vấn tìm kiếm mã
+Cú pháp tìm kiếm trong bài viết này chỉ áp dụng cho việc tìm kiếm mã bằng GitHub Code Search. Lưu ý rằng cú pháp và các tiêu chí để tìm kiếm nội dung không phải mã, chẳng hạn như sự cố, người dùng và thảo luận, không giống với cú pháp để tìm kiếm mã. Để biết thêm thông tin về tìm kiếm không phải mã, hãy xem Giới thiệu về tìm kiếm trên GitHub và Tìm kiếm trên GitHub .
+
+Truy vấn tìm kiếm bao gồm các thuật ngữ tìm kiếm, bao gồm văn bản bạn muốn tìm kiếm và các yếu tố hạn chế giúp thu hẹp phạm vi tìm kiếm.
+
+Một thuật ngữ không có từ hạn định sẽ khớp với nội dung của tệp hoặc đường dẫn của tệp.
+
+Ví dụ, truy vấn sau:
+
+http-push
+Truy vấn trên sẽ khớp với tệp docs/http-push.txt, ngay cả khi nó không chứa thuật ngữ http-push. Nó cũng sẽ khớp với một tệp có tên example.txtnếu nó chứa thuật ngữ http-push.
+
+Bạn có thể nhập nhiều thuật ngữ cách nhau bằng dấu cách để tìm kiếm tài liệu khớp với cả hai thuật ngữ.
+
+Ví dụ, truy vấn sau:
+
+sparse index
+Kết quả tìm kiếm sẽ bao gồm tất cả các tài liệu có chứa các thuật ngữ sparsevà index, theo bất kỳ thứ tự nào. Ví dụ, nó sẽ khớp với một tệp chứa SparseIndexVector, một tệp có cụm từ index for sparse trees, và thậm chí một tệp có tên index.txtchứa thuật ngữ sparse.
+
+Tìm kiếm nhiều thuật ngữ được phân tách bằng khoảng trắng tương đương với tìm kiếm hello AND world. Các phép toán Boolean khác, chẳng hạn như hello OR world, cũng được hỗ trợ. Để biết thêm thông tin về các phép toán Boolean, hãy xem Sử dụng các phép toán Boolean .
+
+Tìm kiếm mã cũng hỗ trợ tìm kiếm một chuỗi chính xác, bao gồm cả khoảng trắng. Để biết thêm thông tin, hãy đọc Truy vấn để tìm kết quả khớp chính xác .
+
+Bạn có thể thu hẹp phạm vi tìm kiếm mã của mình bằng các ký tự chuyên biệt, chẳng hạn như repo:, language:và path:. Để biết thêm thông tin về các từ hạn định mà bạn có thể sử dụng khi tìm kiếm mã, hãy xem Sử dụng từ hạn định .
+
+También puedes usar expresiones regulares en las búsquedas rodeando la expresión con barras diagonales. Para obtener más información sobre el uso de expresiones regulares, consulta Uso de expresiones regulares.
+
+Consulta de una coincidencia exacta
+Para buscar una cadena exacta, incluido el espacio en blanco, puedes rodear la cadena con comillas. Por ejemplo:
+
+"sparse index"
+También puedes usar cadenas entre comillas en calificadores, por ejemplo:
+
+path:git language:"protocol buffers"
+Buscar comillas y barras diagonales inversas
+Para buscar un código que contenga comillas, puedes establecer la comilla mediante una barra diagonal inversa. Por ejemplo, para buscar la cadena exacta name = "tensorflow", puedes buscar:
+
+"name = \"tensorflow\""
+Para buscar un código que contenga una barra diagonal inversa, \, use una barra diagonal inversa doble, \\.
+
+Las dos secuencias de escape \\ y \" también se pueden usar fuera de comillas. Sin embargo, no se reconoce ninguna otra secuencia de escape. Una barra diagonal inversa que no va seguida de " o \ se incluye en la búsqueda, sin cambios.
+
+Las secuencias de escape adicionales, como \n para que coincidan con un carácter de nueva línea, se admiten en expresiones regulares. Consulta Uso de expresiones regulares.
+
+Uso de operaciones booleanas
+La búsqueda de código admite expresiones booleanas. Puedes usar los operadores AND, OR y NOT para combinar términos de búsqueda.
+
+De forma predeterminada, los términos adyacentes separados por espacios en blanco son equivalentes al uso del operador AND. Por ejemplo, la consulta de búsqueda sparse index es la misma que sparse AND index, lo que significa que los resultados de la búsqueda incluirán todos los documentos que contengan los términos sparse y index, en cualquier orden.
+
+Para buscar documentos que contengan un término u otro, puedes usar el operador OR. Por ejemplo, la consulta siguiente coincidirá con los documentos que contengan sparse o index:
+
+sparse OR index
+Para excluir archivos de los resultados de búsqueda, puedes usar el operador NOT. Por ejemplo, para excluir archivos en el directorio __testing__, puedes buscar:
+
+"fatal error" NOT path:__testing__
+Puedes usar paréntesis para expresar expresiones booleanas más complicadas. Por ejemplo:
+
+(language:ruby OR language:python) AND NOT path:"/tests/"
+Uso de calificadores
+Puedes usar palabras clave especializadas para calificar la búsqueda.
+
+Calificador de repositorio
+Calificadores de organización y usuario
+Calificador de lenguaje
+Calificador de ruta de acceso
+Calificador de símbolos
+Calificador de contenido
+Calificador IS
+Calificador de repositorio
+Para buscar dentro de un repositorio, usa el calificador repo:. Debes proporcionar el nombre completo del repositorio, incluido el propietario. Por ejemplo:
+
+repo:github-linguist/linguist
+Para buscar en un conjunto de repositorios, puedes combinar varios calificadores repo: con el operador booleano OR. Por ejemplo:
+
+repo:github-linguist/linguist OR repo:tree-sitter/tree-sitter
+Note
+
+Tìm kiếm mã hiện không hỗ trợ biểu thức chính quy hoặc khớp một phần cho tên kho lưu trữ, do đó bạn sẽ cần nhập toàn bộ tên kho lưu trữ (bao gồm cả tiền tố người dùng) để trình định danh repo:hoạt động.
+
+Tiêu chuẩn tổ chức và người dùng
+Để tìm kiếm tệp trong một tổ chức, hãy sử dụng ký tự hạn định org:. Ví dụ:
+
+org:github
+Để tìm kiếm tệp trong tài khoản cá nhân, hãy sử dụng ký tự user:. Ví dụ:
+
+user:octocat
+Ghi chú
+
+Tìm kiếm mã hiện không hỗ trợ biểu thức chính quy hoặc kết quả khớp một phần cho tên tổ chức hoặc tên người dùng, do đó bạn sẽ cần nhập toàn bộ tên tổ chức hoặc tên người dùng để trình hạn định hoạt động.
+
+Trình độ ngôn ngữ
+Để thu hẹp phạm vi tìm kiếm xuống một ngôn ngữ cụ thể, hãy sử dụng từ hạn định language:. Ví dụ:
+
+language:ruby OR language:cpp OR language:csharp
+Để biết danh sách đầy đủ các tên ngôn ngữ được hỗ trợ, hãy xem languages.yaml trong github-linguist/linguist . Nếu ngôn ngữ bạn muốn sử dụng không có trong danh sách, bạn có thể mở yêu cầu kéo để thêm ngôn ngữ đó.
+
+Trình định tính đường dẫn
+Để tìm kiếm trong đường dẫn tệp, hãy sử dụng ký tự hạn định path:. Điều này sẽ khớp với các tệp có chứa thuật ngữ ở bất kỳ đâu trong đường dẫn tệp. Ví dụ, để tìm kiếm các tệp có chứa thuật ngữ này unit_teststrong đường dẫn của chúng, hãy sử dụng:
+
+path:unit_tests
+Truy vấn trên sẽ khớp với cả src/unit_tests/my_test.pyvà src/docs/unit_tests.md, vì cả hai đều chứa unit_testmột vị trí nào đó trong đường dẫn của chúng.
+
+Để chỉ khớp với tên tệp cụ thể (và không phải một phần của đường dẫn), bạn có thể sử dụng biểu thức chính quy:
+
+path:/(^|\/)README\.md$/
+Lưu ý rằng .tên tệp được thoát vì .nó có ý nghĩa đặc biệt đối với biểu thức chính quy. Để biết thêm thông tin về cách sử dụng biểu thức chính quy, hãy xem Sử dụng biểu thức chính quy .
+
+
+Bạn cũng có thể sử dụng một số biểu thức toàn cục hạn chế trong định tính path:.
+
+Ví dụ, để tìm kiếm các tệp có phần mở rộng txt, bạn có thể sử dụng:
+
+path:*.txt
+
+Để tìm kiếm các tệp JavaScript trong thư mục `src`, bạn có thể sử dụng:
+path:src/*.js
+Theo mặc định, biểu thức toàn cục không được neo vào điểm bắt đầu của đường dẫn, do đó biểu thức trên vẫn sẽ khớp với đường dẫn như app/src/main.js. Nhưng nếu bạn thêm tiền tố vào biểu thức /, thì nó sẽ bị phân cách ở đầu. Ví dụ:
+
+path:/src/*.js
+Lưu ý rằng *nó không khớp với ký tự /, do đó đối với ví dụ trên, tất cả kết quả sẽ là hậu duệ trực tiếp của thư mục src. Để tìm kiếm các kết quả khớp trong các thư mục con, sao cho kết quả bao gồm các tệp lồng nhau sâu như /src/app/testing/utils/example.js, bạn có thể sử dụng **. Ví dụ:
+
+path:/src/**/*.js
+
+Bạn cũng có thể sử dụng ký tự toàn cục ?. Ví dụ, để khớp với đường dẫn file.aachoặc file.abc, bạn có thể sử dụng:
+
+path:*.a?c
+
+Để tìm kiếm tên tệp có chứa ký tự đặc biệt như `*` hoặc `?`, chỉ cần sử dụng chuỗi dấu ngoặc kép:
+path:"file?"
+Biểu thức toàn cục bị vô hiệu hóa đối với các chuỗi được trích dẫn, do đó truy vấn trên sẽ chỉ khớp với các đường dẫn có chứa chuỗi ký tự file?.
+
+Biểu tượng định tính
+Bạn có thể tìm kiếm định nghĩa ký hiệu trong mã, chẳng hạn như định nghĩa hàm hoặc lớp, bằng cách sử dụng trình định danh symbol:. Tìm kiếm ký hiệu dựa vào phân tích mã bằng hệ sinh thái trình phân tích cây nguồn mở , do đó không cần cấu hình bổ sung hoặc tích hợp công cụ xây dựng.
+
+Ví dụ, để tìm kiếm một ký hiệu có tên WithContext:
+
+language:go symbol:WithContext
+Ở một số ngôn ngữ, bạn có thể tìm kiếm ký hiệu bằng cách sử dụng tiền tố (ví dụ: tiền tố cho tên lớp của ký hiệu). Ví dụ, đối với một phương thức deleteRowstrong struct Maint, bạn có thể tra cứu xem symbol:Maint.deleteRowsphương thức đó sử dụng Go hay symbol:Maint::deleteRowsRust.
+
+Bạn cũng có thể sử dụng biểu thức chính quy với ký hiệu hạn định. Ví dụ, truy vấn sau sẽ tìm các chuyển đổi mà mọi người đã triển khai trong Rust cho kiểu String:
+
+language:rust symbol:/^String::to_.*/
+Lưu ý rằng trình định danh này chỉ tìm kiếm định nghĩa chứ không phải tham chiếu và chưa hỗ trợ đầy đủ tất cả các loại ký hiệu hoặc ngôn ngữ. Trích xuất ký hiệu được hỗ trợ trong các ngôn ngữ sau.
+
+Đập
+C
+C#
+C++
+Mã số
+Thuốc tiên
+Đi
+X
+Java
+JavaScript
+Mặt trăng
+PHP
+Bộ đệm giao thức
+Trăn
+R
+Hồng ngọc
+rỉ sét
+thang độ
+chim sơn ca
+Nhanh
+Bản đánh máy
+Chúng tôi đang nỗ lực để hỗ trợ thêm nhiều ngôn ngữ hơn. Nếu bạn muốn đóng góp vào nỗ lực này, bạn có thể thêm hỗ trợ cho ngôn ngữ của mình vào hệ sinh thái trình phân tích cây nguồn mở mà Symbol Search dựa trên.
+
+Tiêu chuẩn nội dung
+Theo mặc định, các thuật ngữ không có hệ thống sẽ tìm kiếm đường dẫn tệp và nội dung. Để giới hạn tìm kiếm theo đúng nội dung của tệp chứ không phải đường dẫn tệp, hãy sử dụng trình hạn định content:. Ví dụ:
+
+content:README.md
+Truy vấn này chỉ khớp với các tệp có chứa thuật ngữ README.md, thay vì khớp với các tệp có tên README.md.
+
+Vòng loại IS
+Để lọc dựa trên thuộc tính kho lưu trữ, bạn có thể sử dụng trình hạn định is:. is:hỗ trợ các giá trị sau:
+
+archived: Giới hạn tìm kiếm trong các kho lưu trữ đã lưu trữ.
+fork: Giới hạn tìm kiếm trong các kho lưu trữ phân nhánh.
+vendored: Giới hạn tìm kiếm đối với nội dung được phát hiện là đã được chuyển giao cho nhà cung cấp.
+generated: Giới hạn tìm kiếm đối với nội dung được phát hiện là đã tạo.
+Ví dụ:
+
+path:/^MIT.txt$/ is:archived
+Ten en cuenta que el calificador is: se puede invertir con el operador NOT. Para buscar repositorios no archivados, puedes buscar:
+
+log4j NOT is:archived
+Para excluir bifurcaciones de los resultados, puedes buscar:
+
+log4j NOT is:fork
+Uso de expresiones regulares
+La búsqueda de código admite expresiones regulares para buscar patrones en el código. Puedes usar expresiones regulares en términos de búsqueda sin sistema operativo, así como en muchos calificadores, rodeando la expresión regular con barras diagonales.
+
+Por ejemplo, para buscar la expresión regular sparse.*index, usarías:
+
+/sparse.*index/
+Ten en cuenta que tendrá que escapar las barras diagonales dentro de la expresión regular. Por ejemplo, para buscar archivos dentro del directorio App/src, usarías:
+
+/^App\/src\//
+Dentro de una expresión regular, \n significa un carácter de nueva línea, \t significa una pestaña y \x{hhhh} se puede usar para escapar cualquier carácter Unicode. Esto significa que puede usar expresiones regulares para buscar cadenas exactas que contengan caracteres que no se pueden escribir en la barra de búsqueda.
+
+Las características de expresiones regulares más comunes funcionan en la búsqueda de código. Sin embargo, no se admiten las aserciones de “búsqueda en torno”.
+
+Separación de términos de búsqueda
+Todas las partes de una búsqueda, como los términos de búsqueda, las cadenas exactas, las expresiones regulares, los calificadores, los paréntesis y las palabras clave booleanas AND, OR y NOT, deben estar separados entre sí con espacios. La única excepción es que los elementos entre paréntesis, ( ), no necesitan estar separados de los paréntesis.
+
+Si la búsqueda contiene varios componentes que no están separados por espacios u otro texto que no siga las reglas enumeradas anteriormente, la búsqueda de código intentará adivinar lo que quiere decir. A menudo se revierte al tratar ese componente de la consulta como texto exacto que se va a buscar. Por ejemplo, la consulta siguiente:
+
+printf("hello world\n");
+La búsqueda de código dejará de interpretar los paréntesis y comillas como caracteres especiales y, en su lugar, buscará archivos que contengan ese código exacto.
+
+Si la búsqueda de código supone un error, siempre puedes obtener la búsqueda que querías usando comillas y espacios para aclarar el significado.
+
+Distinción entre mayúsculas y minúsculas
+De forma predeterminada, la búsqueda de código no distingue mayúsculas de minúsculas y en los resultados se incluyen ambas formas. Puedes realizar búsquedas con distinción entre mayúsculas y minúsculas mediante una expresión regular con la opción de no distinguir entre ambas desactivada. Por ejemplo, para buscar la cadena "True" se usaría:
+
+/(?-i)True/
+Ayuda y soporte técnico
+¿Encontró lo que necesitaba?
+
+Directiva de privacidad
+¿Aún necesita ayuda?
+Pregúntele a la comunidad de GitHub
+Póngase en contacto con el soporte técnico.
+Información legal
+Một số nội dung này có thể đã được dịch tự động hoặc bằng AI.
+
+© 2025 GitHub, Inc.
+Điều khoản
+Sự riêng tư
+Tình trạng
+Giá cả
+Dịch vụ chuyên gia
+Blog
+Tổng quan về cú pháp tìm kiếm mã GitHub - Tài liệu GitHubhuant<!--
   <<< Author notes: Header of the course >>>
-  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
+  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.![1000000926](https://github.com/user-attachments/assets/91815213-9a87-497e-beef-e43f80c50dda)
+![1000000926](https://github.com/user-attachments/assets/923289be-45cd-42a2-b801-c0adb2cd6f39)
+
   In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
   Add your open source license, GitHub uses Creative Commons Attribution 4.0 International.
 -->
